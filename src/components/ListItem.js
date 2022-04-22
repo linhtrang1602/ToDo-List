@@ -13,13 +13,15 @@ class ListItem extends Component {
 
     renderItem = () => {
         let {items} = this.state;
+        if (items.length === 0) {
+            return <Item item={0} />
+        }
         return items.map((item, index) => {
-            console.log(item);
-            console.log("index", index);
             return(
                 <Item
                     item={item}
                     index={index}
+                    handleShowAlert={this.handleShowAlert}
                 />
             )
         });
