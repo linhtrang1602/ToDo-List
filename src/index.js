@@ -4,6 +4,8 @@ import './style.css';
 import './bootstrap.min.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+//import './../node_modules/sweetalert/dist/sweetalert.css';
+//import './../node_modules/sweetalert/dist/sweetalert.min';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

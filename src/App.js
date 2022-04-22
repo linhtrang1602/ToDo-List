@@ -6,12 +6,37 @@ import ListItem from "./components/ListItem";
 //import Item from "./components/Item";
 //import ItemEdit from "./components/ItemEdit";
 import Form from "./components/Form";
+import Items from "./mockdata/Items";
+import SweetAlert from 'sweetalert-react';
+import './sweetalert.css'
 
 class App extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            items: Items,
+            showAlert: false,
+            titleAlert: ''
+        }
+    }
+
+
+
     render() {
         return (
             <div className="container">
-              <Title />
+                <button onClick={()=>this.setState({ showAlert: true })}>Alert</button>
+                <SweetAlert
+                    show={this.state.showAlert}
+                    title="Delete Item"
+                    text={this.state.titleAlert}
+                    showCancelButton
+                    onOutsideClick={() => this.setState({ showAlert: false})}
+                    onEscapeKey={()    => this.setState({ showAlert: false})}
+                    onCancel={()       => this.setState({ showAlert: false})}
+                    onConfirm={()      => this.setState({ showAlert: false })}
+                />
+                <Title />
               <div className="row">
                 <div className="col-xs-4 col-sm-4 col-md-4 col-lg-4">
                   <Search />

@@ -2,11 +2,12 @@ import React, {Component} from "react";
 import Items from "../mockdata/Items";
 import Item from "./Item";
 
+
 class ListItem extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            items: Items
+            items:Items ,
         }
     }
 
