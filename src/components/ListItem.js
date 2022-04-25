@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import Items from "../mockdata/Items";
 import Item from "./Item";
+import SweetAlert from "sweetalert-react";
 
 
 class ListItem extends Component {
@@ -8,9 +9,35 @@ class ListItem extends Component {
         super(props);
         this.state = {
             items:Items ,
+            showAlert: false,
+            titleAlert: '',
+            idAlert: '',
         }
     }
 
+    handleShowAlert = (item) => {
+        console.log(item);
+        this.setState({
+            showAlert: true,
+            titleAlert: item.name,
+            idAlert: item.id,
+        });
+    }
+
+    handleDeleteItem = () => {
+        let {idAlert, items} = this.state;
+        if (items.length > 0) {
+            for (let i = 0; i < items.length; i++) {
+                if (items[i].id === idAlert ) {
+                    items.splice(i,1);
+                    break;
+                }
+            }
+        }
+        this.setState({
+            showAlert: false
+        });
+    }
     renderItem = () => {
         let {items} = this.state;
         if (items.length === 0) {
@@ -49,6 +76,20 @@ class ListItem extends Component {
                     </thead>
                     <tbody>
                     {this.renderItem()}
+                    <SweetAlert
+                        show={this.state.showAlert}
+                        title="Delete Item"
+                        text={this.state.titleAlert}
+                        showCancelButton
+                        onOutsideClick={() => this.setState({ showAlert: false})}
+                        onEscapeKey={()    => this.setState({ showAlert: false})}
+                        onCancel={()       => this.setState({ showAlert: false})}
+                        onConfirm={()      => {
+                            this.setState({ showAlert: false});
+                            this.handleDeleteItem();
+
+                        }}
+                    />
                     </tbody>
                 </table>
             </div>

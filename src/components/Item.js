@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import './../App'
+<<<<<<< HEAD
 // import SweetAlert from "sweetalert-react";
 import DeleteAlert from './DeleteAlert';
 
@@ -45,6 +46,10 @@ class Item extends Component {
         );
     }
 
+=======
+
+class Item extends Component {
+>>>>>>> Delete_item_func
     render() {
         let {item, index} = this.props;
         if (item === 0) {
@@ -94,6 +99,7 @@ class Item extends Component {
                     <button
                         type="button"
                         className="btn btn btn-danger btn-sm"
+<<<<<<< HEAD
                         // onClick={() => this.handleShowAlert(item)}
                         onClick={this.popUp}
                     >Delete</button>
@@ -111,6 +117,10 @@ class Item extends Component {
                     {/*        this.setState({ showAlert: false});*/}
                     {/*    }}*/}
                     {/*/>*/}
+=======
+                        onClick={() => this.props.handleShowAlert(item)}
+                    >Delete</button>
+>>>>>>> Delete_item_func
                 </td>
             </tr>
         )
