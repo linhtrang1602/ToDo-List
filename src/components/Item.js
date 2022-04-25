@@ -1,43 +1,53 @@
 import React, {Component} from "react";
 import './../App'
-import SweetAlert from "sweetalert-react";
+// import SweetAlert from "sweetalert-react";
+import DeleteAlert from './DeleteAlert';
 
 class Item extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            showAlert: false,
-            titleAlert: '',
-            idAlert: '',
-        };
+        // this.state = {
+        //     showAlert: false,
+        //     titleAlert: '',
+        //     idAlert: '',
+        // };
     }
 
-    handleShowAlert = (item) => {
-        console.log(item);
-        this.setState({
-            showAlert: true,
-            titleAlert: item.name,
-            idAlert: item.id,
-        });
+    // handleShowAlert = (item) => {
+    //     console.log(item);
+    //     this.setState({
+    //         showAlert: true,
+    //         titleAlert: item.name,
+    //         idAlert: item.id,
+    //     });
+    // }
+
+    // handleDeleteItem = () => {
+    //     let {idAlert, items} = this,state;
+    //     if (items.length > 0) {
+    //         for (let i = 0; i < items.length; i++) {
+    //             if (items[i].id === idAlert ) {
+    //                 items.splice(i,1);
+    //                 break;
+    //             }
+    //         }
+    //     }
+    //     this.setState({
+    //         showAlert: false
+    //     });
+    // }
+
+    popUp = () => {
+        return (
+            <DeleteAlert
+                handleShowAlert = {this.handleShowAlert}
+            />
+        );
     }
 
-    handleDeleteItem = () => {
-        let {idAlert, items} = this,state;
-        if (items.length > 0) {
-            for (let i = 0; i < items.length; i++) {
-                if (items[i].id === idAlert ) {
-                    items.splice(i,1);
-                    break;
-                }
-            }
-        }
-        this.setState({
-            showAlert: false
-        });
-    }
     render() {
         let {item, index} = this.props;
-        if (item == 0) {
+        if (item === 0) {
             return (
                 <tr>
                     <td
@@ -84,21 +94,23 @@ class Item extends Component {
                     <button
                         type="button"
                         className="btn btn btn-danger btn-sm"
-                        onClick={() => this.handleShowAlert(item)}
+                        // onClick={() => this.handleShowAlert(item)}
+                        onClick={this.popUp}
                     >Delete</button>
-                    <SweetAlert
-                        show={this.state.showAlert}
-                        title="Delete Item"
-                        text={this.state.titleAlert}
-                        showCancelButton
-                        onOutsideClick={() => this.setState({ showAlert: false})}
-                        onEscapeKey={()    => this.setState({ showAlert: false})}
-                        onCancel={()       => this.setState({ showAlert: false})}
-                        onConfirm={()      => {
-                            this.handleDeleteItem();
-                            this.setState({ showAlert: false});
-                        }}
-                    />
+                    {/*<DeleteAlert />*/}
+                    {/*<SweetAlert*/}
+                    {/*    show={this.state.showAlert}*/}
+                    {/*    title="Delete Item"*/}
+                    {/*    text={this.state.titleAlert}*/}
+                    {/*    showCancelButton*/}
+                    {/*    onOutsideClick={() => this.setState({ showAlert: false})}*/}
+                    {/*    onEscapeKey={()    => this.setState({ showAlert: false})}*/}
+                    {/*    onCancel={()       => this.setState({ showAlert: false})}*/}
+                    {/*    onConfirm={()      => {*/}
+                    {/*        this.handleDeleteItem();*/}
+                    {/*        this.setState({ showAlert: false});*/}
+                    {/*    }}*/}
+                    {/*/>*/}
                 </td>
             </tr>
         )

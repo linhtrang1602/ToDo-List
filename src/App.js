@@ -6,19 +6,19 @@ import ListItem from "./components/ListItem";
 //import Item from "./components/Item";
 //import ItemEdit from "./components/ItemEdit";
 import Form from "./components/Form";
-import Items from "./mockdata/Items";
-import SweetAlert from 'sweetalert-react';
+// import Items from "./mockdata/Items";
+// import SweetAlert from 'sweetalert-react';
 import './sweetalert.css'
 
 class App extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            items: Items,
-            // showAlert: false,
-            // titleAlert: '',
-            // idAlert: '',
-        }
+        // this.state = {
+        //     items: Items,
+        //     showAlert: false,
+        //     titleAlert: '',
+        //     idAlert: '',
+        // }
     }
 
     // handleShowAlert = (item) => {
