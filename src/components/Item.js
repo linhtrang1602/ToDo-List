@@ -47,6 +47,7 @@ class Item extends Component {
                     <button
                         type="button"
                         className="btn btn-warning btn-sm"
+                        onClick={() => this.props.handleEditItem(index, item)}
                     >Edit</button>
                     <button
                         type="button"

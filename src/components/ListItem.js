@@ -2,19 +2,38 @@ import React, {Component} from "react";
 import Items from "../mockdata/Items";
 import Item from "./Item";
 import SweetAlert from "sweetalert-react";
+import ItemEdit from "./ItemEdit";
 
 
 class ListItem extends Component {
     constructor(props) {
         super(props);
+        let arrayLevel = [];
+        if (Items.length > 0) {
+            for (let i=0; i<Items.length; i++) {
+                if (arrayLevel.indexOf(Items[i].level) === -1) {
+                    arrayLevel.push(Items[i].level);
+                }
+            }
+        }
+        arrayLevel.sort(function (a, b){return a - b});
         this.state = {
             items:Items ,
+            // Delete item parameters
             showAlert: false,
             titleAlert: '',
             idAlert: '',
+            // Edit item parameters
+            indexEdit: 0,
+            idEdit: '',
+            nameEdit: '',
+            levelEdit: 0,
+            arrayLevel: arrayLevel
         }
     }
 
+    // --------DELETE ITEM METHODS------------
+    // Show alert when user delete an item
     handleShowAlert = (item) => {
         console.log(item);
         this.setState({
@@ -24,6 +43,7 @@ class ListItem extends Component {
         });
     }
 
+    // Delete item on state
     handleDeleteItem = () => {
         let {idAlert, items} = this.state;
         if (items.length > 0) {
@@ -38,17 +58,81 @@ class ListItem extends Component {
             showAlert: false
         });
     }
+
+    //--------EDIT ITEM METHODS---------------
+    // Receive the edit item information
+    handleEditItem = (index, item) => {
+        this.setState({
+            indexEdit: index,
+            idEdit: item.id,
+            nameEdit: item.name,
+            levelEdit: item.level,
+        });
+    }
+
+    // Set the value of idEdit
+    handleEditClickCancel = () => {
+        this.setState({
+            idEdit: ''
+        });
+    }
+
+    handleEditInputChange = (value) => {
+        this.setState({
+            nameEdit: value
+        });
+    }
+
+    handleEditSelectChange = (value) => {
+        this.setState({
+            levelEdit: value
+        });
+    }
+
+    handleEditClickSubmit = () => {
+        let {items, idEdit, nameEdit, levelEdit} = this.state;
+        if (items.length > 0) {
+            for (let i=0; i<items.length; i++) {
+                if (items[i].id === idEdit) {
+                    items[i].name = nameEdit;
+                    items[i].level = +levelEdit;
+                    break;
+                }
+            }
+        }
+        this.setState({
+            idEdit: ''
+        });
+    }
+
+    // Render item on the table
     renderItem = () => {
-        let {items} = this.state;
+        const {items, idEdit, indexEdit, nameEdit, levelEdit, arrayLevel} = this.state;
         if (items.length === 0) {
             return <Item item={0} />
         }
         return items.map((item, index) => {
+            if (item.id === idEdit) {
+                return (
+                    <ItemEdit
+                        key={index}
+                        indexEdit={indexEdit}
+                        nameEdit={nameEdit}
+                        levelEdit={levelEdit}
+                        arrayLevel={arrayLevel}
+                        handleEditClickCancel={this.handleEditClickCancel}
+                        handleEditInputChange={this.handleEditInputChange}
+                        handleEditSelectChange={this.handleEditSelectChange}
+                        handleEditClickSubmit={this.handleEditClickSubmit}
+                    />
+                )
+            }
             return(
                 <Item
                     item={item}
-                    index={index}
+                    key={index}
                     handleShowAlert={this.handleShowAlert}
+                    handleEditItem={this.handleEditItem}
                 />
             )
         });
