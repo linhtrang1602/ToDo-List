@@ -28,7 +28,8 @@ class ListItem extends Component {
             idEdit: '',
             nameEdit: '',
             levelEdit: 0,
-            arrayLevel: arrayLevel
+            arrayLevel: arrayLevel,
+
         }
     }
 

@@ -15,7 +15,7 @@ class ItemEdit extends Component{
                         key={index}
                         value={level}
                     >Medium</option>
-                case 2:
+                default:
                     return <option
                         key={index}
                         value={level}
