@@ -7,6 +7,7 @@ import Form from "./components/Form";
 import Items from "./mockdata/Items";
 import './sweetalert.css'
 import {v4 as uuidv4} from 'uuid';
+import { orderBy as orderById } from 'lodash';
 
 class App extends Component {
     constructor(props) {
@@ -27,9 +28,13 @@ class App extends Component {
             showForm: false,
             valueItem: '',
             levelItem: 0,
-        }
+            // Sort items
+            sortType: '',
+            sortOrder: '',
+        };
     }
 
+    //---------ADD ITEM METHODS----------------
     handleShowForm = () => {
         this.setState({
             showForm: !this.state.showForm
@@ -72,6 +77,18 @@ class App extends Component {
         });
     }
 
+    //----------SORT ITEMS METHODS-----------------
+    handleSort = (sortType, sortOrder) => {
+        this.setState({
+            sortType: sortType,
+            sortOrder: sortOrder
+        });
+        let {items} = this.state;
+        this.setState({
+            items: orderById(items, [sortType], [sortOrder])
+        });
+    }
+
     render() {
         return (
             <div className="container">
@@ -81,7 +98,11 @@ class App extends Component {
                         <Search />
                     </div>
                     <div className="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                        <Sort />
+                        <Sort
+                            sortType={this.state.sortType}
+                            sortOrder={this.state.sortOrder}
+                            handleSort={this.handleSort}
+                        />
                     </div>
                     <div className="col-xs-5 col-sm-5 col-md-5 col-lg-5">
                         <button
