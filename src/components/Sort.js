@@ -21,7 +21,7 @@ class Sort extends Component {
             <div className="dropdown">
                 <button
                     className="btn btn-default dropdown-toggle"
-                    type="button"
+                    type=""
                     data-toggle="dropdown"
                     aria-haspopup="true"
                     aria-expanded="true"
