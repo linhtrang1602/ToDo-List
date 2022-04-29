@@ -25,6 +25,7 @@ class Sort extends Component {
                     data-toggle="dropdown"
                     aria-haspopup="true"
                     aria-expanded="true"
+                    //onClick={() => console.log('ahjhj')}
                 >Sort by <span className="caret" />
                 </button>
                     <ul
