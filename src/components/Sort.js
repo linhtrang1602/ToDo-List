@@ -1,6 +1,9 @@
 import React, {Component} from "react";
+import ReactDropdown from "react-dropdown";
+import 'react-dropdown/style.css';
 
 class Sort extends Component {
+
     renderSort = () => {
         let {sortType, sortOrder} = this.props;
         if (sortType !== '' && sortOrder !== '') {
@@ -17,7 +20,8 @@ class Sort extends Component {
     }
 
     render() {
-        return(
+        return (
+
             <div className="dropdown">
                 <button
                     className="btn btn-default dropdown-toggle"

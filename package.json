@@ -9,6 +9,7 @@
     "ansi-styles": "^6.1.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
+    "react-dropdown": "^1.10.0",
     "react-scripts": "5.0.1",
     "sweetalert": "^2.1.2",
     "sweetalert-react": "^0.4.11",
